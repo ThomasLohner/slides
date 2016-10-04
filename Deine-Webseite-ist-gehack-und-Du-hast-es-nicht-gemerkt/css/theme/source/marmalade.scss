@@ -1,0 +1,56 @@
+/**
+ * marmalade GmbH theme for reveal.js.
+ *
+ * Copyright (C) 2013 marmalade GmbH, http://www.marmalade.de
+ */
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+// Include theme-specific fonts
+@font-face {
+    font-family: 'NexaBlack';
+    src: url('../../lib/font/nexa/254B32_D_0.eot');
+    src: url('../../lib/font/nexa/254B32_D_0.eot?#iefix') format('embedded-opentype'),
+        url('../../lib/font/nexa/254B32_D_0.woff') format('woff'),
+        url('../../lib/font/nexa/254B32_D_0.ttf') format('truetype');
+}
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #002145;
+
+#logo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10%;
+}
+#logo img {
+    float:right;
+    max-width: 100px;
+    width: 100%;
+    margin: 15%;
+}
+.reveal pre {
+    width: 100%;
+}
+
+// Primary/body text
+$mainFont: Georgia, serif;
+$mainFontSize: 36px;
+$mainColor: #eee;
+
+// Headings
+$headingFont: 'NexaBlack', Impact, sans-serif;
+
+
+// Background generator
+@mixin bodyBackground() {
+    background: #002145;
+}
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------

